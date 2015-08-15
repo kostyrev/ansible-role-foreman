@@ -37,7 +37,15 @@ License
 
 BSD
 
+## Contributing
+
+ Send your suggestions and pull requests to https://github.com/kostyrevaa/ansible-role-foreman
+
+ When send PR make sure your changes are backward-compatible.
+
+
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Aleksndr Kostyrev
+
