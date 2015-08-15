@@ -1,7 +1,12 @@
-Role Name
+foreman
 =========
 
-A brief description of the role goes here.
+Work in progress
+
+For now all this role can do is just installing repo files.
+
+I use it with kostyrevaa.foreman-proxy role.
+
 
 Requirements
 ------------
