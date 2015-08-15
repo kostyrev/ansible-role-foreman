@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: Aleksandr Kostyrev
-  description: Installs and configures foreman-proxy
+  description: Installs and configures foreman
   issue_tracker_url: https://github.com/kostyrevaa/ansible-role-foreman/issues
   license: license (GPLv3)
   min_ansible_version: 1.2
