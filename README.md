@@ -47,5 +47,5 @@ BSD
 Author Information
 ------------------
 
-Aleksndr Kostyrev
+Aleksandr Kostyrev
 
