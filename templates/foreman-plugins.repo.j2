@@ -1,0 +1,11 @@
+[foreman-plugins]
+name=Foreman plugins {{ foreman_version }}
+baseurl=http://yum.theforeman.org/plugins/{{ foreman_version }}/el{{ ansible_distribution_major_version }}/$basearch
+enabled=1
+gpgcheck=1
+
+[foreman-plugins-source]
+name=Foreman plugins {{ foreman_version }} - source
+baseurl=http://yum.theforeman.org/plugins/1.8/el6/source
+enabled=0
+gpgcheck=0

@@ -1,0 +1,6 @@
+---
+
+- name: render yum repo templates
+  template: src={{ item }} dest=/etc/yum.repos.d/{{ item | basename | regex_replace('.j2','') }}
+  with_fileglob:
+    - ../templates/*.j2
