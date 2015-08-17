@@ -1,0 +1,26 @@
+---
+
+- name: install SCL package
+  yum: name={{ foreman_scl_package }} state=present
+
+- name: install foreman packages
+  yum: name={{ item }} state=present
+  with_items:
+    - foreman
+    - "foreman-{{ foreman_db_type }}"
+
+- name: install foreman-selinux package
+  yum: name=foreman-selinux state=present
+  when: foreman_selinux
+
+- name: install ruby193-rubygem-passenger-native package
+  yum: name={{ item }} state=present
+  with_items:
+   - ruby193-rubygem-passenger-native-libs
+   - rubygem-passenger-native
+   - ruby193-rubygem-passenger
+   - ruby193-rubygem-passenger-native
+   - rubygem-passenger-native-libs
+   - mod_passenger
+   - rubygem-passenger
+  when: foreman_passenger

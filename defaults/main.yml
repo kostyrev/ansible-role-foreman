@@ -1,3 +1,46 @@
 ---
 # defaults file for kostyrevaa.foreman
+foreman_setup_only_repo: false
 foreman_version: 1.8
+foreman_etc_dir: /etc/foreman
+foreman_ansible_control_dir: "{{ foreman_etc_dir }}/ansible_control"
+foreman_user: foreman
+foreman_group: foreman
+foreman_admin_user: admin
+foreman_admin_password: p3tj7WgwjOsx4v6HLu
+foreman_admin_first_name: Admin
+foreman_admin_last_name: Admin
+foreman_admin_email: "root@{{ ansible_domain }}"
+foreman_db_type: postgresql
+foreman_selinux: true
+foreman_passenger: true
+foreman_unattended: true
+foreman_authentication: true
+foreman_ssl: false
+foreman_port: "{{ 80 if foreman_ssl == false else 443 }}"
+foreman_url_prefix: "{{ 'http://' if foreman_ssl == false else 'https://' }}"
+foreman_locations_enabled: false
+foreman_organizations_enabled: false
+
+foreman_oauth_active: true
+foreman_oauth_map_users: false
+foreman_oauth_consumer_key: raGptZdCXqp4ua2lrvJbWIMUt
+foreman_oauth_consumer_secret: m6sxiXtIReSjljfaMQNfeoRLD
+foreman_websockets_encrypt: false
+foreman_websockets_ssl_key: /var/lib/puppet/ssl/private_keys/{{ ansible_fqdn }}.pem
+foreman_websockets_ssl_cert: /var/lib/puppet/ssl/certs/{{ ansible_fqdn }}.pem
+
+foreman_db_type: postgresql
+foreman_db_host: 127.0.0.1
+foreman_db_database: foreman
+foreman_db_username: foreman
+foreman_db_password: pSSL4YkQFuud5PrsDAV6T4vqUtv
+foreman_db_pool: 5
+
+foreman_app_root: /usr/share/foreman
+foreman_environment: production
+foreman_passenger_ruby: /usr/bin/ruby193-ruby
+foreman_passenger_instances: "{{ ansible_processor_cores }}"
+foreman_passenger_start_timeout: 600
+foreman_passenger_pre_start: "{{ foreman_url_prefix }}{{ ansible_fqdn }}"
+

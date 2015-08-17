@@ -1,0 +1,29 @@
+---
+
+- name: create control directory for tasks below
+  file: path={{ foreman_ansible_control_dir }} state=directory mode=0755 owner={{ foreman_user }}
+
+- name: run foreman-rake db:migrate
+  become: yes
+  become_user: "{{ foreman_user }}"
+  shell: "/usr/sbin/foreman-rake db:migrate && touch {{ foreman_ansible_control_dir }}/migrate.done"
+  notify: restart apache
+  args:
+    creates: "{{ foreman_ansible_control_dir }}/migrate.done"
+
+- name: run foreman-rake db:seed
+  become: yes
+  become_user: "{{ foreman_user }}"
+  environment:
+    SEED_ADMIN_USER: "{{ foreman_admin_user }}"
+    SEED_ADMIN_PASSWORD: "{{ foreman_admin_password }}"
+    SEED_ADMIN_FIRST_NAME: "{{ foreman_admin_first_name }}"
+    SEED_ADMIN_LAST_NAME: "{{ foreman_admin_last_name }}"
+    SEED_ADMIN_EMAIL: "{{ foreman_admin_email }}"
+  shell: "/usr/sbin/foreman-rake db:seed && touch {{ foreman_ansible_control_dir }}/seed.done"
+  register: seed_output
+  args:
+    creates: "{{ foreman_ansible_control_dir }}/seed.done"
+  notify: restart apache    
+
+- debug: var=seed_output.stdout_lines

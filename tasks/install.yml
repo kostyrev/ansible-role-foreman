@@ -1,4 +1,13 @@
 ---
 
-- include: RedHat.yml
-  when: ansible_os_family == "RedHat"
+- include: repos.yml
+  tags:
+    - foreman-repos
+    - foreman
+    - foreman-install
+
+- include: packages.yml
+  when: foreman_setup_only_repo == false
+  tags:
+    - foreman-packages
+    - foreman

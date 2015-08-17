@@ -1,0 +1,20 @@
+---
+
+- include: config/foreman.yml
+  tags:
+    - foreman
+    - foreman-configure
+  when: ansible_os_family == "RedHat" and foreman_setup_only_repo == false    
+
+- include: config/passenger.yml
+  when: foreman_passenger
+  tags:
+    - foreman
+    - foreman-configure
+    - passenger
+
+- include: config/database.yml
+  tags:
+    - foreman
+    - foreman-configure
+    - foreman-database

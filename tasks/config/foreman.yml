@@ -1,0 +1,16 @@
+---
+
+- name: render /etc/foreman/settings.yaml
+  template: src=../../templates/settings.yml.j2 dest=/etc/foreman/settings.yaml owner=root group={{ foreman_group }} mode=0640
+  # notify:
+  #   - restart foreman-proxy
+
+- name: render /etc/sysconfig/foreman
+  template: src=../../templates/foreman.sysconfig.j2 dest=/etc/sysconfig/foreman mode=0644
+
+- name: render foreman-proxy settings.d templates
+  template: src={{ item }} dest=/etc/foreman/{{ item | basename | regex_replace('.j2','') }} owner=root group={{ foreman_group }} mode=0640
+  # notify:
+  #   - restart foreman-proxy
+  with_fileglob:
+    - ../../templates/settings/*.j2

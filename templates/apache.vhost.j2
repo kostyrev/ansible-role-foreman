@@ -1,0 +1,86 @@
+<VirtualHost *:{{ foreman_port }} >
+  ServerName {{ ansible_fqdn }}
+
+  ## Vhost docroot
+  DocumentRoot "{{ foreman_app_root }}/public"
+
+  ## Directories, there should at least be a declaration for {{ foreman_app_root }}/public
+
+  <Directory "{{ foreman_app_root }}/public">
+    Options SymLinksIfOwnerMatch
+    AllowOverride None
+    Order allow,deny
+    Allow from all
+  </Directory>
+
+  ## Logging
+  ErrorLog "/var/log/httpd/foreman_error.log"
+  ServerSignature Off
+  CustomLog "/var/log/httpd/foreman_access.log" combined 
+
+  ## Server aliases
+  ServerAlias {{ ansible_hostname }}
+
+  ## Custom fragment
+# Static public dir serving
+
+<Directory {{ foreman_app_root }}/public>
+
+  <IfVersion < 2.4>
+    Allow from all
+  </IfVersion>
+  <IfVersion >= 2.4>
+    Require all granted
+  </IfVersion>
+
+</Directory>
+
+<Directory {{ foreman_app_root }}/public/assets>
+
+  # Use standard http expire header for assets instead of ETag
+  <IfModule mod_expires.c>
+    Header unset ETag
+    FileETag None
+    ExpiresActive On
+    ExpiresDefault "access plus 1 year"
+  </IfModule>
+
+  # Return compressed assets if they are precompiled
+  <IfModule mod_rewrite.c>
+    RewriteEngine on
+    # Make sure the browser supports gzip encoding and file with .gz added
+    # does exist on disc before we rewrite with the extension
+    RewriteCond %{HTTP:Accept-Encoding} \b(x-)?gzip\b
+    RewriteCond %{REQUEST_FILENAME}.gz -s
+    RewriteRule ^(.+) $1.gz [L]
+    # Set headers for all possible assets which are compressed
+    <FilesMatch \.css\.gz$>
+      ForceType text/css
+      Header set Content-Encoding gzip
+      SetEnv no-gzip
+    </FilesMatch>
+    <FilesMatch \.js\.gz$>
+      ForceType text/javascript
+      Header set Content-Encoding gzip
+      SetEnv no-gzip
+    </FilesMatch>
+  </IfModule>
+
+</Directory>
+
+<IfVersion < 2.4>
+  Include /etc/httpd/conf.d/05-foreman.d/*.conf
+</IfVersion>
+<IfVersion >= 2.4>
+  IncludeOptional /etc/httpd/conf.d/05-foreman.d/*.conf
+</IfVersion>
+
+
+  PassengerAppRoot {{ foreman_app_root }}
+  PassengerRuby {{ foreman_passenger_ruby }}
+  PassengerMinInstances {{ foreman_passenger_instances }}
+  PassengerStartTimeout {{ foreman_passenger_start_timeout }}
+  PassengerPreStart {{ foreman_passenger_pre_start }}
+
+  AddDefaultCharset UTF-8
+</VirtualHost>

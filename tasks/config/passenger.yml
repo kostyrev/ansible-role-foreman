@@ -1,0 +1,7 @@
+---
+
+- name: create apache override dir
+  file: path=/etc/httpd/conf.d/05-foreman.d state=directory mode=0755
+
+- name: render apache vhost template
+  template: src=../../templates/apache.vhost.j2 dest=/etc/httpd/conf.d/05-foreman.conf
