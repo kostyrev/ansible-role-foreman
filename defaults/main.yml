@@ -37,10 +37,11 @@ foreman_db_username: foreman
 foreman_db_password: pSSL4YkQFuud5PrsDAV6T4vqUtv
 foreman_db_pool: 5
 
+foreman_servername: "foreman.{{ ansible_domain }}"
 foreman_app_root: /usr/share/foreman
 foreman_environment: production
 foreman_passenger_ruby: /usr/bin/ruby193-ruby
 foreman_passenger_instances: "{{ ansible_processor_cores }}"
 foreman_passenger_start_timeout: 600
-foreman_passenger_pre_start: "{{ foreman_url_prefix }}{{ ansible_fqdn }}"
+foreman_passenger_pre_start: "{{ foreman_url_prefix }}{{ foreman_servername }}"
 

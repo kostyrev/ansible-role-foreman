@@ -1,5 +1,5 @@
 <VirtualHost *:{{ foreman_port }} >
-  ServerName {{ ansible_fqdn }}
+  ServerName {{ foreman_servername }}
 
   ## Vhost docroot
   DocumentRoot "{{ foreman_app_root }}/public"
