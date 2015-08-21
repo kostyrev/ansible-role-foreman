@@ -16,6 +16,4 @@
   when: ansible_os_family == "RedHat"
 
 - include: configure.yml
-
-
-
+  when: foreman_setup_only_repo == false

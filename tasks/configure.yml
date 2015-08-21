@@ -4,7 +4,6 @@
   tags:
     - foreman
     - foreman-configure
-  when: ansible_os_family == "RedHat" and foreman_setup_only_repo == false    
 
 - include: config/passenger.yml
   when: foreman_passenger
