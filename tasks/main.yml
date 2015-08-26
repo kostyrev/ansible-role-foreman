@@ -11,6 +11,7 @@
    - default.yml
   tags:
     - foreman
+    - foreman-packages
 
 - include: install.yml
   when: ansible_os_family == "RedHat"
