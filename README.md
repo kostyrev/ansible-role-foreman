@@ -1,17 +1,15 @@
 foreman
 =========
 
-Work in progress
-
-For now all this role can do is just installing repo files.
-
-I use it with kostyrevaa.foreman-proxy role.
-
+No time to write DOCs.
+See Example Playbook
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+this role doesn't configure
+ - PostgreSQL
+ - apache (only vhost for foreman)
 
 Role Variables
 --------------
@@ -26,11 +24,17 @@ A list of other roles hosted on Galaxy should go here, plus any details in regar
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
+    - hosts: foreman
+      vars:
+        foreman_version: 1.9
+        foreman_ssl: true
+        foreman_servername: "{{ ansible_nodename }}"
+        foreman_admin_password: 8t2rQKk_xrV
+        foreman_oauth_consumer_key: cyyZbb2Wnr
+        foreman_oauth_consumer_secret: w5Zz_AMT17
+        foreman_db_password: dBzknszf
       roles:
-         - { role: username.rolename, x: 42 }
+         - { role: kostyrevaa.foreman }
 
 License
 -------
