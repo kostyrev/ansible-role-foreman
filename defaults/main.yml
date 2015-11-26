@@ -28,7 +28,7 @@ foreman_oauth_active: true
 foreman_oauth_map_users: false
 foreman_oauth_consumer_key: raGptZdCXqp4ua2lrvJbWIMUt
 foreman_oauth_consumer_secret: m6sxiXtIReSjljfaMQNfeoRLD
-foreman_websockets_encrypt: false
+foreman_websockets_encrypt: 'off'
 foreman_websockets_ssl_key: /var/lib/puppet/ssl/private_keys/{{ ansible_fqdn }}.pem
 foreman_websockets_ssl_cert: /var/lib/puppet/ssl/certs/{{ ansible_fqdn }}.pem
 

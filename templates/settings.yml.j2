@@ -10,9 +10,8 @@
 :oauth_consumer_key: {{ foreman_oauth_consumer_key }}
 :oauth_consumer_secret: {{ foreman_oauth_consumer_secret }}
 
-{% if foreman_websockets_encrypt %}
 # Websockets
 :websockets_encrypt: {{ foreman_websockets_encrypt  | lower }}
 :websockets_ssl_key: {{ foreman_websockets_ssl_key }}
 :websockets_ssl_cert: {{ foreman_websockets_ssl_cert }}
-{% endif %}
+
