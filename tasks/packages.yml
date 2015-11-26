@@ -13,6 +13,14 @@
   yum: name=foreman-selinux state=present
   when: foreman_selinux
 
+- name: install passenger reqs
+  yum: name={{ item }} state=present
+  with_items:
+    - tfm-rubygem-passenger-native
+    - tfm-mod_passenger
+    - tfm-rubygem-passenger
+  when: foreman_passenger and ansible_distribution_major_version == '7' and foreman_version == '1.10'
+
 - name: install ruby193-rubygem-passenger-native package
   yum: name={{ item }} state=present
   with_items:
