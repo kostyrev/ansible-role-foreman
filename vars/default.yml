@@ -1,0 +1,5 @@
+---
+# vars file for kostyrevaa.foreman
+foreman_repo_dist: el
+foreman_repo_os_rel: ansible_distribution_major_version
+
