@@ -1,0 +1,30 @@
+---
+
+# - name: debug
+#   debug: 
+#     msg: "{{ item }}"
+#   with_items:
+#     - foreman_discovery
+#     - foreman_default_hostgroup
+#   tags: foreman-plugins-debug
+
+# - name: debug install plugin
+#   debug:
+#     msg: "'ruby193-rubygem-'{{ item }}"
+#   with_items:
+#     - foreman_discovery
+#     - foreman_default_hostgroup
+#   tags: foreman-plugins-debug
+
+- name: install plugins OS agnostic
+  action: >
+    {{ ansible_pkg_mgr }}
+    name="{{ foreman_plugin_prefix }}{{ item }}"
+    state=present
+  with_items: foreman_plugins
+    tags: 
+    - foreman-plugins-install
+    - foreman-plugins-debug
+
+- include: plugins/discovery.yml
+  when: "'discovery' in {{ foreman_plugins|list }}"

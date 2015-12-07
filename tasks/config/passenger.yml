@@ -9,3 +9,4 @@
 
 - name: render apache vhost template
   template: src=../../templates/apache.vhost.j2 dest=/etc/httpd/conf.d/05-foreman.conf
+  notify: restart apache

@@ -1,2 +1,4 @@
 ---
 foreman_scl_package: foreman-release-scl
+# vars for plugins
+foreman_plugin_prefix: 'ruby193-rubygem-foreman_'

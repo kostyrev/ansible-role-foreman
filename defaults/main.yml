@@ -47,3 +47,9 @@ foreman_passenger_instances: "{{ ansible_processor_cores }}"
 foreman_passenger_start_timeout: 600
 foreman_passenger_pre_start: "{{ foreman_url_prefix }}{{ foreman_servername }}"
 
+foreman_plugin_config_dir: '/etc/foreman/plugins'
+
+foreman_plugin_discovery_source_url: 'http://downloads.theforeman.org/discovery/releases/latest/'
+foreman_plugin_discovery_image_name: 'fdi-image-latest.tar'
+foreman_plugin_discovery_tftp_root: "{{ tftp_root_directory }}"
+foreman_plugin_discovery_download_image: false

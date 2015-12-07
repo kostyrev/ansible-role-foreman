@@ -1,0 +1,3 @@
+---
+# vars for plugins
+foreman_plugin_prefix: 'ruby-foreman-'

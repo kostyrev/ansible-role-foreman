@@ -18,3 +18,8 @@
 
 - include: configure.yml
   when: foreman_setup_only_repo == false
+
+- include: plugins.yml
+  when: foreman_plugins is defined
+  tags:
+    - foreman-plugins
