@@ -6,7 +6,7 @@
     name="{{ foreman_plugin_prefix }}{{ item }}"
     state=present
   with_items: foreman_plugins
-    tags: 
+  tags:
     - foreman-plugins-install
     - foreman-plugins-debug
 
