@@ -12,6 +12,7 @@
   tags:
     - foreman
     - foreman-packages
+    - foreman-plugins
 
 - include: install.yml
   when: ansible_os_family == "RedHat"
