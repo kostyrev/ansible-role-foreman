@@ -1,4 +1,6 @@
 ---
 foreman_scl_package: foreman-release-scl
+foreman_repo_dist: el
+foreman_repo_os_rel: '{{ ansible_distribution_major_version }}'
 # vars for plugins
 foreman_plugin_prefix: 'ruby193-rubygem-foreman_'
