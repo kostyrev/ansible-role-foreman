@@ -53,3 +53,4 @@ foreman_plugin_discovery_source_url: 'http://downloads.theforeman.org/discovery/
 foreman_plugin_discovery_image_name: 'fdi-image-latest.tar'
 foreman_plugin_discovery_tftp_root: "{{ tftp_root_directory }}"
 foreman_plugin_discovery_download_image: false
+foreman_plugins_state: 'present'

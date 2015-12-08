@@ -1,10 +1,10 @@
 ---
 
-- name: install plugins OS agnostic
+- name: manage plugins OS agnostic
   action: >
     {{ ansible_pkg_mgr }}
     name="{{ foreman_plugin_prefix }}{{ item }}"
-    state=present
+    state={{ foreman_plugins_state }}
   with_items: foreman_plugins
   tags:
     - foreman-plugins-install
