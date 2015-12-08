@@ -2,6 +2,8 @@
 
 - name: install SCL package
   yum: name={{ foreman_scl_package }} state=present
+  tags:
+    - foreman-scl
 
 - name: install foreman packages
   yum: name={{ item }} state=present
