@@ -15,3 +15,8 @@
 :websockets_ssl_key: {{ foreman_websockets_ssl_key }}
 :websockets_ssl_cert: {{ foreman_websockets_ssl_cert }}
 
+{% if foreman_ssl %}
+:ssl_ca_file: /etc/pki/tls/certs/ca.pem
+:ssl_certificate: /etc/pki/tls/certs/foreman.linx.sbx.avp.ru.crt
+:ssl_priv_key: /etc/pki/tls/private/foreman.linx.sbx.avp.ru.key
+{% endif %}

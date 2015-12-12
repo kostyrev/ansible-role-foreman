@@ -6,6 +6,9 @@
 
   {% if foreman_ssl == true %}
   SSLEngine on
+  {% if foreman_self_signed_ssl == false %}
+  SSLCACertificateFile {{ foreman_ssl_ca_certificate_file }}
+  {% endif %}
   SSLCertificateFile {{ foreman_ssl_certificate_file }}
   SSLCertificateKeyFile {{ foreman_ssl_certificate_key_file }}
   SSLProtocol all -SSLv2 -SSLv3

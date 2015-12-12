@@ -17,6 +17,8 @@ foreman_passenger: true
 foreman_unattended: true
 foreman_authentication: true
 foreman_ssl: false
+foreman_self_signed_ssl: true
+foreman_ssl_ca_certificate_file: "/etc/pki/tls/certs/ca.pem"
 foreman_ssl_certificate_file: "/etc/pki/tls/certs/localhost.crt"
 foreman_ssl_certificate_key_file: "/etc/pki/tls/private/localhost.key"
 foreman_port: "{{ 80 if foreman_ssl == false else 443 }}"
