@@ -19,7 +19,7 @@
   when: ansible_os_family == "RedHat"
 
 - include: configure.yml
-  when: foreman_setup_only_repo == false
+  when: not foreman_setup_only_repo
 
 - include: plugins.yml
   when: foreman_plugins is defined
