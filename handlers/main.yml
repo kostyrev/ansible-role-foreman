@@ -1,2 +1,9 @@
 ---
 # handlers file for kostyrevaa.foreman
+- name: foreman-installer
+  command: foreman-installer --dont-save-answers
+  register: foreman_installer_output
+  notify: foreman-installer-output
+
+- name: foreman-installer-output
+  debug: var=foreman_installer_output.stdout_lines

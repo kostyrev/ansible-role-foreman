@@ -3,7 +3,7 @@ galaxy_info:
   author: Aleksandr Kostyrev
   description: Installs and configures foreman
   issue_tracker_url: https://github.com/kostyrevaa/ansible-role-foreman/issues
-  min_ansible_version: 1.2
+  min_ansible_version: 2.0
   platforms:
   - name: EL
     versions:

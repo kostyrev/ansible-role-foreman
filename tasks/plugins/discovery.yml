@@ -1,8 +1,0 @@
----
-
-- name: download foreman_plugin_discovery_image_name
-  get_url: 
-    url={{ foreman_plugin_discovery_source_url }}{{ foreman_plugin_discovery_image_name }}
-    dest="{{ tftp_root_directory }}/boot/{{ foreman_plugin_discovery_image_name }}"
-    mode=0644
-  when: foreman_plugin_discovery_download_image

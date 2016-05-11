@@ -1,15 +1,12 @@
 foreman
 =========
 
-No time to write DOCs.
-See Example Playbook
+This role uses foreman-installer to provision Foreman instance
 
 Requirements
 ------------
 
-this role doesn't configure
- - PostgreSQL
- - apache (only vhost for foreman)
+Ansible 2
 
 Role Variables
 --------------
@@ -26,13 +23,6 @@ Example Playbook
 
     - hosts: foreman
       vars:
-        foreman_version: 1.9
-        foreman_ssl: true
-        foreman_servername: "{{ ansible_nodename }}"
-        foreman_admin_password: 8t2rQKk_xrV
-        foreman_oauth_consumer_key: cyyZbb2Wnr
-        foreman_oauth_consumer_secret: w5Zz_AMT17
-        foreman_db_password: dBzknszf
       roles:
          - { role: kostyrevaa.foreman }
 

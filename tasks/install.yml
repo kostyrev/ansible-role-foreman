@@ -1,13 +1,21 @@
 ---
 
-- include: repos.yml
-  tags:
-    - foreman-repos
-    - foreman
-    - foreman-install
+- name: install puppetlabs repo
+  package:
+    name: "http://yum.puppetlabs.com/puppetlabs-release-el-{{ ansible_distribution_major_version }}.noarch.rpm"
+    state: present
 
-- include: packages.yml
-  when: foreman_setup_only_repo == false
-  tags:
-    - foreman-packages
-    - foreman
+- name: install epel-release
+  package:
+    name: "epel-release"
+    state: present
+
+- name: install foreman repo
+  package:
+    name: "http://yum.theforeman.org/releases/{{ foreman_version }}/el{{ ansible_distribution_major_version }}/{{ ansible_architecture }}/foreman-release.rpm"
+    state: present
+
+- name: install foreman-installer
+  package:
+    name: "foreman-installer"
+    state: present

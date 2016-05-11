@@ -1,19 +1,13 @@
 ---
 
-- include: config/foreman.yml
+- name: render /etc/foreman-installer/scenarios.d/foreman-answers.yaml
+  template:
+    src: foreman-answers.yaml.j2
+    dest: /etc/foreman-installer/scenarios.d/foreman-answers.yaml
+    owner: root
+    group: root
+    mode: '0600'
+  notify: foreman-installer
   tags:
-    - foreman
-    - foreman-configure
+    - foreman-answers
 
-- include: config/passenger.yml
-  when: foreman_passenger
-  tags:
-    - foreman
-    - foreman-configure
-    - passenger
-
-- include: config/database.yml
-  tags:
-    - foreman
-    - foreman-configure
-    - foreman-database

@@ -1,0 +1,58 @@
+---
+{% if foreman_enable %}
+foreman:
+  custom_repo: true
+  custom_repo: true
+  manage_user: false
+{% if foreman_admin_password is defined %}
+  admin_password: {{ foreman_admin_password }}
+{% endif %}
+{% if foreman_ssl %}
+  ssl: true
+  server_ssl_ca: {{ foreman_ssl_ca_certificate_file }}
+  server_ssl_chain: {{ foreman_ssl_certificate_file }}
+  server_ssl_cert: {{ foreman_ssl_certificate_file }}
+  server_ssl_certs_dir: ""
+  server_ssl_key: {{ foreman_ssl_certificate_key_file }}
+  server_ssl_crl: ""
+  websockets_ssl_key: {{ foreman_ssl_certificate_key_file }}
+  websockets_ssl_cert: {{ foreman_ssl_certificate_file }}
+{% endif %}
+{% else %}
+foreman: false
+{% endif %}
+{% if foreman_proxy_enable %}
+foreman_proxy:
+  register_in_foreman: false
+  custom_repo: true
+{% if foreman_proxy_ssl %}
+  ssl: true
+  ssl_ca: {{ foreman_proxy_ssl_ca }}
+  ssl_cert: {{ foreman_proxy_ssl_cert }}
+  ssl_key: {{ foreman_proxy_ssl_key }}
+{% endif %}
+{% if foreman_proxy_dhcp %}
+  dhcp: true
+{% endif %}
+{% if foreman_proxy_dhcp_managed %}
+  dhcp_managed: true
+  dhcp_range: "{{ foreman_proxy_dhcp_range }}"
+  dhcp_gateway: "{{ foreman_proxy_dhcp_gateway }}"
+  dhcp_nameservers: "{{ foreman_proxy_dhcp_nameservers | join(',') }}"
+{% endif %}
+{% if foreman_proxy_dns %}
+  dns: true
+{% endif %}
+{% if not foreman_proxy_dns_manage %}
+  dns_managed: false
+{% endif %}
+{% else %}
+foreman_proxy: false
+{% endif %}
+puppet: false
+foreman::cli: false
+foreman::plugin::ansible: true
+foreman::plugin::dhcp_browser: true
+foreman::plugin::discovery:
+  install_images: true
+foreman::plugin::setup: true
