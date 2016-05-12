@@ -7,3 +7,4 @@
 
 - name: foreman-installer-output
   debug: var=foreman_installer_output.stdout_lines
+  when: foreman_debug_installer

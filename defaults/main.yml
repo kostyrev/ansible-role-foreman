@@ -1,6 +1,7 @@
 ---
 # defaults file for kostyrevaa.foreman
 foreman_version: 1.11
+foreman_debug_installer: false
 
 foreman_enable: true
 foreman_ssl: true
