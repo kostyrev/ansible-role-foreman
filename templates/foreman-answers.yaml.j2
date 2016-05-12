@@ -25,6 +25,9 @@ foreman: false
 foreman_proxy:
   register_in_foreman: false
   custom_repo: true
+  puppetca: false
+  puppet: false
+  puppetrun: false
 {% if foreman_proxy_ssl %}
   ssl: true
   ssl_ca: {{ foreman_proxy_ssl_ca }}
@@ -49,7 +52,9 @@ foreman_proxy:
 {% else %}
 foreman_proxy: false
 {% endif %}
+
 puppet: false
+
 foreman::cli: false
 foreman::plugin::ansible: true
 foreman::plugin::dhcp_browser: true
