@@ -4,8 +4,8 @@ foreman:
   custom_repo: true
   custom_repo: true
   manage_user: false
-{% if foreman_admin_password is defined %}
-  admin_password: {{ foreman_admin_password }}
+{% if foreman_pass is defined %}
+  admin_password: {{ foreman_pass }}
 {% endif %}
 {% if foreman_ssl %}
   ssl: true
