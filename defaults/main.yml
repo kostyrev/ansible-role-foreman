@@ -2,7 +2,7 @@
 # defaults file for kostyrevaa.foreman
 foreman_version: 1.11
 foreman_debug_installer: false
-
+foreman_setup_only_repo: false
 foreman_enable: true
 foreman_ssl: true
 foreman_ssl_ca_certificate_file: "/etc/pki/tls/certs/ca.pem"
