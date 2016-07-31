@@ -1,0 +1,20 @@
+---
+- hosts: all
+  pre_tasks:
+    - lineinfile:
+        dest: /etc/resolv.conf
+        state: absent
+        regexp: "^search"
+  roles:
+    - role: ansible-role-foreman
+      foreman_version: 1.12
+      foreman_pass: 8w4pSJ9OtEqpFBBD
+      foreman_puppet_server_enable: true
+      foreman_proxy_dns_manage: true
+      foreman_proxy_dhcp_interface: 'enp0s8'
+      foreman_proxy_dns_interface: "{{ foreman_proxy_dhcp_interface }}"
+      foreman_proxy_dhcp_range: "{{ ansible_all_ipv4_addresses[1].rpartition('.')[0] + '.10' }} {{ ansible_all_ipv4_addresses[1].rpartition('.')[0] + '.250' }}"
+      foreman_proxy_dhcp_gateway: "{{ ansible_all_ipv4_addresses[1].rpartition('.')[0] + '.1' }}"
+      foreman_proxy_dhcp_nameservers:
+        - "{{ ansible_all_ipv4_addresses[1].rpartition('.')[0] + '.2' }}"
+        - "{{ ansible_all_ipv4_addresses[1].rpartition('.')[0] + '.3' }}"
