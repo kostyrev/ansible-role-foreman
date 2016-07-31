@@ -2,7 +2,6 @@
 {% if foreman_enable %}
 foreman:
   custom_repo: true
-  custom_repo: true
   manage_user: false
 {% if foreman_pass is defined %}
   admin_password: {{ foreman_pass }}
@@ -25,7 +24,11 @@ foreman: false
 foreman_proxy:
   register_in_foreman: false
   custom_repo: true
+{% if foreman_proxy_puppetca %}
+  puppetca: true
+{% else %}
   puppetca: false
+{% endif %}
   puppet: false
   puppetrun: false
 {% if foreman_proxy_ssl %}
@@ -38,6 +41,9 @@ foreman_proxy:
   dhcp: true
 {% endif %}
 {% if foreman_proxy_dhcp_managed %}
+{% if foreman_proxy_dhcp_interface is defined %}
+  dhcp_interface: "{{ foreman_proxy_dhcp_interface }}"
+{% endif %}
   dhcp_managed: true
   dhcp_range: "{{ foreman_proxy_dhcp_range }}"
   dhcp_gateway: "{{ foreman_proxy_dhcp_gateway }}"
@@ -49,11 +55,19 @@ foreman_proxy:
 {% if not foreman_proxy_dns_manage %}
   dns_managed: false
 {% endif %}
+{% if foreman_proxy_dns_interface is defined %}
+  dns_interface: "{{ foreman_proxy_dns_interface }}"
+{% endif %}
 {% else %}
 foreman_proxy: false
 {% endif %}
 
+{% if foreman_puppet_server_enable %}
+puppet:
+  server: true
+{% else %}
 puppet: false
+{% endif %}
 
 foreman::cli: false
 foreman::plugin::ansible: true

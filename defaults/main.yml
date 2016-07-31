@@ -3,17 +3,26 @@
 foreman_version: 1.11
 foreman_debug_installer: false
 foreman_setup_only_repo: false
+
+foreman_puppet_server_enable: false
 foreman_enable: true
 foreman_ssl: true
-foreman_ssl_ca_certificate_file: "/etc/pki/tls/certs/ca.pem"
-foreman_ssl_certificate_file: "/etc/pki/tls/certs/{{ ansible_nodename }}.crt"
-foreman_ssl_certificate_key_file: "/etc/pki/tls/private/{{ ansible_nodename }}.key"
+
+foreman_ssl_base_path: "{{ '/var/lib/puppet/ssl' if foreman_puppet_server_enable else '/etc/pki/tls' }}"
+foreman_ssl_private_keys_dir: "{{ 'private_keys' if foreman_puppet_server_enable else 'private' }}"
+foreman_ssl_key_ext: "{{ 'pem' if foreman_puppet_server_enable else '.key' }}"
+foreman_ssl_cert_ext: "{{ 'pem' if foreman_puppet_server_enable else '.crt' }}"
+foreman_ssl_ca_certificate_file: "{{ foreman_ssl_base_path }}/certs/ca.pem"
+foreman_ssl_certificate_file: "{{ foreman_ssl_base_path }}/certs/{{ ansible_nodename }}.{{ foreman_ssl_cert_ext }}"
+foreman_ssl_certificate_key_file: "{{ foreman_ssl_base_path }}/{{ foreman_ssl_private_keys_dir }}/{{ ansible_nodename }}.{{ foreman_ssl_key_ext }}"
 
 foreman_proxy_enable: true
 foreman_proxy_ssl: true
 foreman_proxy_ssl_ca: "{{ foreman_ssl_ca_certificate_file }}"
 foreman_proxy_ssl_cert: "{{ foreman_ssl_certificate_file }}"
 foreman_proxy_ssl_key: "{{ foreman_ssl_certificate_key_file }}"
+
+foreman_proxy_puppetca: "{{ foreman_puppet_server_enable }}"
 
 foreman_proxy_dhcp: true
 foreman_proxy_dhcp_managed: true

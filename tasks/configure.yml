@@ -10,6 +10,7 @@
   notify: foreman-installer
   tags:
     - foreman-answers
+    - foreman-answers-generate
 
 - name: call foreman-installer right away
   meta: flush_handlers
@@ -20,8 +21,8 @@
     insertbefore: '# Log settings'
     marker: "# {mark} ANSIBLE MANAGED BLOCK"
     content: |
-      :ssl_ca_file: {{ foreman_ssl_ca_certificate_file }}
       :ssl_certificate: {{ foreman_ssl_certificate_file }}
+      :ssl_ca_file: {{ foreman_ssl_ca_certificate_file }}
       :ssl_priv_key: {{ foreman_ssl_certificate_key_file }}
   tags:
     - foreman-settings
